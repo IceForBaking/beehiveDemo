@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://mo4hdvyu6uif"]
+
+[ext_resource type="Texture2D" uid="uid://1pboqukeka4e" path="res://assets/beekeepin-set-transparent.png" id="1_1q2x0"]
+[ext_resource type="Script" uid="uid://mhjbpircv637" path="res://scenes/bee.gd" id="1_ogg2i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vie5o"]
+atlas = ExtResource("1_1q2x0")
+region = Rect2(240, 60, 10, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogg2i"]
+size = Vector2(10, 14)
+
+[node name="Bee" type="Area2D"]
+script = ExtResource("1_ogg2i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_vie5o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ogg2i")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

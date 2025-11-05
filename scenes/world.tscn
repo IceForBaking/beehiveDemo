@@ -1,0 +1,279 @@
+[gd_scene load_steps=22 format=3 uid="uid://d1le6jp6gedne"]
+
+[ext_resource type="Texture2D" uid="uid://cgge7st5oil4b" path="res://assets/Free-Summer-Pixel-Art-Backgrounds/PNG/summer 1/Summer1.png" id="1_rwgxs"]
+[ext_resource type="Shader" uid="uid://nbldgwpxnhy" path="res://shaders/blur.gdshader" id="2_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://by5jamv1ubi0f" path="res://scenes/beehive.tscn" id="3_4wyf3"]
+[ext_resource type="Script" uid="uid://cu4gufuqng1i3" path="res://scenes/place_container.gd" id="3_71j4m"]
+[ext_resource type="Texture2D" uid="uid://cmsrmq5jvh68w" path="res://assets/Honey.png" id="4_k0juu"]
+[ext_resource type="Script" uid="uid://cmpdkwgwkgo2a" path="res://scenes/beehive_container.gd" id="5_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://c6meun4u2slnm" path="res://scenes/shop_beehive.tscn" id="6_qfnet"]
+[ext_resource type="Texture2D" uid="uid://nh1wrsdrmemr" path="res://assets/Coin.png" id="8_7r4gi"]
+[ext_resource type="Texture2D" uid="uid://bxy5rlca8vl4w" path="res://assets/BeeZ_01.png" id="10_e3hyu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k0juu"]
+shader = ExtResource("2_4wyf3")
+shader_parameter/samples = 35
+shader_parameter/lod = 2
+shader_parameter/tint_color = Color(0, 0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7141"]
+size = Vector2(801, 200)
+
+[sub_resource type="SphereMesh" id="SphereMesh_w7kh3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7kh3"]
+atlas = ExtResource("8_7r4gi")
+region = Rect2(97, 2, 14, 14)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7kh3"]
+bg_color = Color(0.847059, 0.509804, 0.0156863, 0.729412)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3hyu"]
+bg_color = Color(0.847059, 0.431373, 0.0941176, 0.729412)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r4gi"]
+bg_color = Color(0.937164, 0.567469, 0.0349699, 0.729412)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7r4gi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8fc1"]
+bg_color = Color(0.570403, 0.881436, 0, 0.729412)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhx03"]
+bg_color = Color(0.307323, 0.489595, 0, 0.729412)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5onr"]
+bg_color = Color(0.428677, 0.671997, 1.92523e-07, 0.729412)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w7kh3"]
+
+[node name="World" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rwgxs")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_k0juu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BeehiveUI" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PlaceContainer" type="HBoxContainer" parent="CanvasLayer/BeehiveUI"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("3_71j4m")
+
+[node name="ShopArea" type="Area2D" parent="CanvasLayer/BeehiveUI/PlaceContainer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/BeehiveUI/PlaceContainer/ShopArea"]
+position = Vector2(400.5, 101)
+shape = SubResource("RectangleShape2D_i7141")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/BeehiveUI/PlaceContainer"]
+custom_minimum_size = Vector2(800, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+color = Color(0.94902, 0.733333, 0.270588, 0.341176)
+
+[node name="BeehiveContainer" type="HBoxContainer" parent="CanvasLayer/BeehiveUI"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+script = ExtResource("5_4mrxx")
+
+[node name="Beehive2" parent="CanvasLayer/BeehiveUI/BeehiveContainer" instance=ExtResource("3_4wyf3")]
+layout_mode = 2
+
+[node name="SpawnPoint" type="Marker2D" parent="CanvasLayer/BeehiveUI/BeehiveContainer"]
+unique_name_in_owner = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer/BeehiveUI/BeehiveContainer/SpawnPoint"]
+modulate = Color(0.803278, 6.32679e-05, 0.156364, 1)
+scale = Vector2(5.905, 5.905)
+mesh = SubResource("SphereMesh_w7kh3")
+
+[node name="DataInt" type="VBoxContainer" parent="CanvasLayer/BeehiveUI"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BeehiveUI/DataInt"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="HoneyTexture" type="TextureRect" parent="CanvasLayer/BeehiveUI/DataInt/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("4_k0juu")
+
+[node name="Label" type="Label" parent="CanvasLayer/BeehiveUI/DataInt/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="CoinTexture" type="TextureRect" parent="CanvasLayer/BeehiveUI/DataInt/HBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_w7kh3")
+
+[node name="Label2" type="Label" parent="CanvasLayer/BeehiveUI/DataInt/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="BeeTexture" type="TextureRect" parent="CanvasLayer/BeehiveUI/DataInt/HBoxContainer"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_e3hyu")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/BeehiveUI/DataInt/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="BeehiveShop" type="GridContainer" parent="CanvasLayer/BeehiveUI"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/h_separation = 20
+columns = 4
+
+[node name="Button" type="Button" parent="CanvasLayer/BeehiveUI/BeehiveShop"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7kh3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e3hyu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7r4gi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7r4gi")
+text = "Buy Bee"
+
+[node name="ShopBeehive" parent="CanvasLayer/BeehiveUI/BeehiveShop" instance=ExtResource("6_qfnet")]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="CanvasLayer/BeehiveUI/BeehiveShop"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_o8fc1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jhx03")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q5onr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w7kh3")
+text = "Sell Honey"
+
+[node name="HoneyShop" type="HBoxContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -279.0
+offset_bottom = 279.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HoneyShop"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+color = Color(1, 0.6862745, 0.30980393, 0.60784316)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HoneyShop/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="CanvasLayer/HoneyShop/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Buy Honey Extractor"
+
+[node name="Button2" type="Button" parent="CanvasLayer/HoneyShop/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Buy Next Bee Level"
+
+[node name="Button3" type="Button" parent="CanvasLayer/HoneyShop/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Buy New Apiary"
+
+[node name="AutoClickTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="area_entered" from="CanvasLayer/BeehiveUI/PlaceContainer/ShopArea" to="CanvasLayer/BeehiveUI/PlaceContainer" method="_on_shop_area_area_entered"]
+[connection signal="area_exited" from="CanvasLayer/BeehiveUI/PlaceContainer/ShopArea" to="CanvasLayer/BeehiveUI/PlaceContainer" method="_on_shop_area_area_exited"]
+[connection signal="gui_input" from="CanvasLayer/BeehiveUI/PlaceContainer/ColorRect" to="CanvasLayer/BeehiveUI" method="_on_color_rect_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/BeehiveUI/PlaceContainer/ColorRect" to="CanvasLayer/BeehiveUI/PlaceContainer" method="_on_color_rect_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BeehiveUI/PlaceContainer/ColorRect" to="CanvasLayer/BeehiveUI/PlaceContainer" method="_on_color_rect_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/BeehiveUI/BeehiveShop/Button" to="." method="_on_button_pressed"]
+[connection signal="beehive_spawn" from="CanvasLayer/BeehiveUI/BeehiveShop/ShopBeehive" to="CanvasLayer/BeehiveUI/BeehiveContainer" method="_on_shop_beehive_beehive_spawn"]
+[connection signal="pressed" from="CanvasLayer/BeehiveUI/BeehiveShop/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="timeout" from="AutoClickTimer" to="CanvasLayer/BeehiveUI/BeehiveContainer/Beehive2" method="_on_auto_click_timer_timeout"]

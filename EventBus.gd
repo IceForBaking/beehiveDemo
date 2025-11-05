@@ -1,0 +1,5 @@
+extends Node
+
+signal honey_changed(honey_point: int)
+signal coin_changed(coins_point: int)
+signal bee_changed(bee_point: int)
