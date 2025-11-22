@@ -12,7 +12,7 @@ var current_bee := 0
 var max_bee := 10
 
 var beehive := 1
-var max_beehive := 4
+var max_beehive := 5
 
 func honey_points_update(amount: int):
 	honey_points += amount
@@ -27,6 +27,6 @@ func bee_update(amount: int):
 	EventBus.bee_changed.emit(current_bee)
 
 func beehive_update(amount: int):
-		beehive += amount
-		EventBus.beehive_changed.emit(beehive)
+	beehive += amount
+	EventBus.beehive_changed.emit(beehive)
 		

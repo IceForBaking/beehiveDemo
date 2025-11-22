@@ -235,6 +235,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_7r4gi")
 text = "Buy Bee"
 
 [node name="BeehiveBuyingButton" parent="HUD/BeehiveUI/BeehiveShop" instance=ExtResource("6_qfnet")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="SellHoneyButton" type="Button" parent="HUD/BeehiveUI/BeehiveShop"]

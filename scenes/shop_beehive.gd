@@ -57,10 +57,11 @@ func _on_gui_input(event: InputEvent) -> void:
 			if event.button_mask == MOUSE_BUTTON_LEFT and event.is_pressed():
 				is_used = false
 				
-				check_max_beehives.emit()
 				beehive_spawn.emit()
 				animation_player.play("hide")
 				await get_tree().create_timer(1).timeout
 				animation_player.play("show")
 				
 				is_used = true
+
+				check_max_beehives.emit()
