@@ -102,7 +102,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8d235"]
 size = Vector2(122, 135)
 
-[node name="Beehive" type="TextureButton"]
+[node name="Beehive" type="TextureButton" groups=["beehive"]]
 offset_right = 120.0
 offset_bottom = 135.0
 pivot_offset = Vector2(60, 67.5)

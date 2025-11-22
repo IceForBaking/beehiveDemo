@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1le6jp6gedne"]
+[gd_scene load_steps=27 format=3 uid="uid://d1le6jp6gedne"]
 
+[ext_resource type="Script" uid="uid://bppeu3ggpunor" path="res://scenes/world.gd" id="1_jhx03"]
 [ext_resource type="Texture2D" uid="uid://cgge7st5oil4b" path="res://assets/Free-Summer-Pixel-Art-Backgrounds/PNG/summer 1/Summer1.png" id="1_rwgxs"]
 [ext_resource type="Script" uid="uid://unknmv8y6hr5" path="res://scenes/hud.gd" id="1_w7kh3"]
 [ext_resource type="Shader" uid="uid://nbldgwpxnhy" path="res://shaders/blur.gdshader" id="2_4wyf3"]
@@ -10,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://c6meun4u2slnm" path="res://scenes/shop_beehive.tscn" id="6_qfnet"]
 [ext_resource type="Texture2D" uid="uid://nh1wrsdrmemr" path="res://assets/Coin.png" id="8_7r4gi"]
 [ext_resource type="Texture2D" uid="uid://bxy5rlca8vl4w" path="res://assets/BeeZ_01.png" id="10_e3hyu"]
+[ext_resource type="Texture2D" uid="uid://1pboqukeka4e" path="res://assets/beekeepin-set-transparent.png" id="10_jhx03"]
+[ext_resource type="Script" uid="uid://b54m5lxgscwub" path="res://scenes/beehive_shop.gd" id="10_q5onr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0juu"]
 shader = ExtResource("2_4wyf3")
@@ -25,6 +28,10 @@ size = Vector2(801, 200)
 [sub_resource type="AtlasTexture" id="AtlasTexture_w7kh3"]
 atlas = ExtResource("8_7r4gi")
 region = Rect2(97, 2, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8fc1"]
+atlas = ExtResource("10_jhx03")
+region = Rect2(218.73029, 104.21019, 147.77927, 111.1449)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7kh3"]
 bg_color = Color(0.847059, 0.509804, 0.0156863, 0.729412)
@@ -73,6 +80,7 @@ corner_radius_bottom_left = 7
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w7kh3"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_jhx03")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("1_w7kh3")
@@ -125,6 +133,7 @@ size_flags_vertical = 4
 color = Color(0.94902, 0.733333, 0.270588, 0.341176)
 
 [node name="BeehiveContainer" type="HBoxContainer" parent="HUD/BeehiveUI"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -172,6 +181,7 @@ size_flags_vertical = 4
 texture = SubResource("AtlasTexture_w7kh3")
 
 [node name="CoinsCounterLabel" type="Label" parent="HUD/BeehiveUI/DataInt/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "0"
@@ -185,18 +195,37 @@ texture = ExtResource("10_e3hyu")
 expand_mode = 1
 
 [node name="BeeCounterLabel" type="Label" parent="HUD/BeehiveUI/DataInt/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="BeehiveTexture" type="TextureRect" parent="HUD/BeehiveUI/DataInt/HBoxContainer"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_o8fc1")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="BeehiveCounterLabel" type="Label" parent="HUD/BeehiveUI/DataInt/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "0"
 
 [node name="BeehiveShop" type="GridContainer" parent="HUD/BeehiveUI"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/h_separation = 20
 columns = 4
+script = ExtResource("10_q5onr")
 
 [node name="BuyBeeButton" type="Button" parent="HUD/BeehiveUI/BeehiveShop"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_w7kh3")
@@ -205,7 +234,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7r4gi")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7r4gi")
 text = "Buy Bee"
 
-[node name="ShopBeehive" parent="HUD/BeehiveUI/BeehiveShop" instance=ExtResource("6_qfnet")]
+[node name="BeehiveBuyingButton" parent="HUD/BeehiveUI/BeehiveShop" instance=ExtResource("6_qfnet")]
 layout_mode = 2
 
 [node name="SellHoneyButton" type="Button" parent="HUD/BeehiveUI/BeehiveShop"]
@@ -276,7 +305,8 @@ autostart = true
 [connection signal="gui_input" from="HUD/BeehiveUI/PlaceContainer/ColorRect" to="HUD/BeehiveUI" method="_on_color_rect_gui_input"]
 [connection signal="mouse_entered" from="HUD/BeehiveUI/PlaceContainer/ColorRect" to="HUD/BeehiveUI/PlaceContainer" method="_on_color_rect_mouse_entered"]
 [connection signal="mouse_exited" from="HUD/BeehiveUI/PlaceContainer/ColorRect" to="HUD/BeehiveUI/PlaceContainer" method="_on_color_rect_mouse_exited"]
-[connection signal="pressed" from="HUD/BeehiveUI/BeehiveShop/BuyBeeButton" to="." method="_on_button_pressed"]
-[connection signal="beehive_spawn" from="HUD/BeehiveUI/BeehiveShop/ShopBeehive" to="HUD/BeehiveUI/BeehiveContainer" method="_on_shop_beehive_beehive_spawn"]
-[connection signal="pressed" from="HUD/BeehiveUI/BeehiveShop/SellHoneyButton" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="HUD/BeehiveUI/BeehiveShop/BuyBeeButton" to="HUD/BeehiveUI/BeehiveShop" method="_on_buy_bee_button_pressed"]
+[connection signal="beehive_spawn" from="HUD/BeehiveUI/BeehiveShop/BeehiveBuyingButton" to="HUD/BeehiveUI/BeehiveContainer" method="_on_shop_beehive_beehive_spawn"]
+[connection signal="check_max_beehives" from="HUD/BeehiveUI/BeehiveShop/BeehiveBuyingButton" to="HUD/BeehiveUI/BeehiveShop" method="_on_beehive_buying_button_check_max_beehives"]
+[connection signal="pressed" from="HUD/BeehiveUI/BeehiveShop/SellHoneyButton" to="HUD/BeehiveUI/BeehiveShop" method="_on_sell_honey_button_pressed"]
 [connection signal="timeout" from="AutoClickTimer" to="HUD/BeehiveUI/BeehiveContainer/Beehive2" method="_on_auto_click_timer_timeout"]

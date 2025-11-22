@@ -1,20 +1,20 @@
 extends TextureRect
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var button: Button = $"../Button"
 
 var tween : Tween
 var is_used := true
 var current_state = BUY_STATE.NOT_ACTIVE
  
 signal beehive_spawn
+signal check_max_beehives
 
 enum BUY_STATE {
 	ACTIVE,
 	NOT_ACTIVE
 }
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	match current_state:
 		BUY_STATE.NOT_ACTIVE:
@@ -54,22 +54,13 @@ func _on_gui_input(event: InputEvent) -> void:
 		
 		if event is InputEventMouseButton:
 			
-			
 			if event.button_mask == MOUSE_BUTTON_LEFT and event.is_pressed():
-				#button.disabled = false
 				is_used = false
-				emit_signal("beehive_spawn")
+				
+				check_max_beehives.emit()
+				beehive_spawn.emit()
 				animation_player.play("hide")
 				await get_tree().create_timer(1).timeout
 				animation_player.play("show")
-				is_used = true
 				
-				if Globals.current_bee >= Globals.max_bee:
-					Globals.current_bee = Globals.RESET_BEE_COUNT
-					button.disabled = false
-
-
-
-
-			
-			
+				is_used = true
