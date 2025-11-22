@@ -9,4 +9,4 @@ var current_bee := 0
 
 func honey_points_update(amount: int):
 	honey_points += amount
-	EventBus.honey_changed.emit(amount)
+	EventBus.honey_changed.emit(honey_points)
