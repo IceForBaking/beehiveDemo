@@ -7,6 +7,9 @@ var b_size := randf_range(-100, 100)
 var center := Vector2()
 var update_from_bee := 1
 
+func _ready() -> void:
+	$AudioStreamPlayer2D.pitch_scale = randf_range(0.5, 1.2)
+
 func _process(delta):
 	randomize()
 	time += delta * speed

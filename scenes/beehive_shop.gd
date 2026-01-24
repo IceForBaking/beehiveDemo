@@ -32,5 +32,7 @@ func _on_beehive_buying_button_check_max_beehives() -> void:
 	if Globals.beehive == Globals.max_beehive:
 		if Globals.current_bee >= Globals.max_bee:
 			buy_bee_button.disabled = true
+		else:
+			buy_bee_button.disabled = false
 	elif Globals.current_bee < Globals.max_bee:
 		buy_bee_button.disabled = false

@@ -34,21 +34,21 @@ atlas = ExtResource("10_jhx03")
 region = Rect2(218.73029, 104.21019, 147.77927, 111.1449)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7kh3"]
-bg_color = Color(0.847059, 0.509804, 0.0156863, 0.729412)
+bg_color = Color(0.8698677, 0.22287267, 0.017581971, 0.7294118)
 corner_radius_top_left = 7
 corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3hyu"]
-bg_color = Color(0.847059, 0.431373, 0.0941176, 0.729412)
+bg_color = Color(0.87058824, 0.22352941, 0.015686275, 0.7294118)
 corner_radius_top_left = 7
 corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r4gi"]
-bg_color = Color(0.937164, 0.567469, 0.0349699, 0.729412)
+bg_color = Color(0.99656504, 0.39562154, 0.2874455, 0.7294118)
 corner_radius_top_left = 7
 corner_radius_top_right = 7
 corner_radius_bottom_right = 7

@@ -13,7 +13,10 @@ func bee_spawn():
 	get_parent().add_child(bee)
 
 func _on_shop_beehive_beehive_spawn() -> void:
-	var beehive = beehive_scene.instantiate()
-	add_child(beehive)
-	Globals.beehive_update(beehive_update)
-	Globals.bee_update(Globals.RESET_BEE_COUNT)
+	if Globals.beehive != Globals.max_beehive:
+		var beehive = beehive_scene.instantiate()
+		add_child(beehive)
+		Globals.beehive_update(beehive_update)
+		Globals.bee_update(Globals.RESET_BEE_COUNT)
+
+		

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://mo4hdvyu6uif"]
+[gd_scene load_steps=6 format=3 uid="uid://mo4hdvyu6uif"]
 
 [ext_resource type="Texture2D" uid="uid://1pboqukeka4e" path="res://assets/beekeepin-set-transparent.png" id="1_1q2x0"]
 [ext_resource type="Script" uid="uid://mhjbpircv637" path="res://scenes/bee.gd" id="1_ogg2i"]
+[ext_resource type="AudioStream" uid="uid://bc7tt27fure5p" path="res://sounds/Bee-noise.mp3" id="3_ogg2i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vie5o"]
 atlas = ExtResource("1_1q2x0")
@@ -21,5 +22,16 @@ shape = SubResource("RectangleShape2D_ogg2i")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ogg2i")
+volume_db = -20.05
+pitch_scale = 0.5
+autoplay = true
+max_distance = 150.0
+attenuation = 1.8660663
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

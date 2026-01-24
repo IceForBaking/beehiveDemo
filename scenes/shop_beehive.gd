@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 		BUY_STATE.ACTIVE:
 			modulate = Color("ffffff")
 			
-	if Globals.current_bee >= Globals.max_bee:
+	if Globals.current_bee >= Globals.max_bee and Globals.beehive < Globals.max_beehive:
 		current_state = BUY_STATE.ACTIVE
 	else:
 		current_state = BUY_STATE.NOT_ACTIVE
@@ -50,7 +50,7 @@ func _on_mouse_exited() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	
-	if is_used == true and Globals.current_bee >= Globals.max_bee:
+	if is_used == true and Globals.current_bee >= Globals.max_bee and Globals.beehive != Globals.max_beehive:
 		
 		if event is InputEventMouseButton:
 			
