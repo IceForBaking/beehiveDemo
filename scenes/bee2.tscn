@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://wme1e2dpnroe"]
+
+[ext_resource type="Script" uid="uid://mhjbpircv637" path="res://scenes/bee.gd" id="1_hpmof"]
+[ext_resource type="Texture2D" uid="uid://dxwrmm50c1413" path="res://assets/Bee.png" id="2_hpmof"]
+[ext_resource type="AudioStream" uid="uid://bc7tt27fure5p" path="res://sounds/Bee-noise.mp3" id="3_6y1ap"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogg2i"]
+size = Vector2(10, 16)
+
+[node name="Bee2" type="Area2D" unique_id=1427412231 groups=["merge"]]
+z_index = 1
+script = ExtResource("1_hpmof")
+update_from_bee = 3
+level = 2
+center = Vector2(600, 400)
+
+[node name="Button" type="Button" parent="." unique_id=336465275]
+offset_left = -7.0
+offset_top = -10.0
+offset_right = 7.0
+offset_bottom = 10.0
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1563679550]
+texture = ExtResource("2_hpmof")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=896678240]
+shape = SubResource("RectangleShape2D_ogg2i")
+
+[node name="Timer" type="Timer" parent="." unique_id=1141790354]
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1379798945]
+stream = ExtResource("3_6y1ap")
+volume_db = -25.0
+pitch_scale = 0.5
+autoplay = true
+max_distance = 500.0
+attenuation = 1.8660663
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1928624213]
+current = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://by5jamv1ubi0f"]
+[gd_scene format=3 uid="uid://by5jamv1ubi0f"]
 
-[ext_resource type="Texture2D" uid="uid://1pboqukeka4e" path="res://assets/beekeepin-set-transparent.png" id="1_6tm0l"]
+[ext_resource type="Texture2D" uid="uid://cre40o2j2owlf" path="res://assets/Beehive.png" id="2_t5lks"]
+[ext_resource type="Texture2D" uid="uid://cv7p5bxl4sufh" path="res://assets/Beehive_shadow.png" id="3_qorhp"]
 [ext_resource type="Script" uid="uid://b8cu18foic31c" path="res://scenes/beehive.gd" id="3_t5lks"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8d235"]
-atlas = ExtResource("1_6tm0l")
-region = Rect2(670, 230, 120, 135)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8d235"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qorhp"]
 
 [sub_resource type="Animation" id="Animation_qorhp"]
 length = 0.001
@@ -102,22 +103,33 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8d235"]
 size = Vector2(122, 135)
 
-[node name="Beehive" type="TextureButton" groups=["beehive"]]
+[node name="Beehive" type="TextureButton" unique_id=2120330181 groups=["beehive"]]
+material = SubResource("ShaderMaterial_8d235")
 offset_right = 120.0
 offset_bottom = 135.0
 pivot_offset = Vector2(60, 67.5)
-size_flags_horizontal = 4
-texture_normal = SubResource("AtlasTexture_8d235")
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_t5lks")
 script = ExtResource("3_t5lks")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_t5lks")
-}
+[node name="TextureRect" type="TextureRect" parent="." unique_id=295416383]
+modulate = Color(1, 1, 1, 0.29411766)
+show_behind_parent = true
+material = SubResource("ShaderMaterial_qorhp")
+layout_mode = 0
+offset_left = 8.325
+offset_top = 8.23
+offset_right = 128.32516
+offset_bottom = 143.23
+texture = ExtResource("3_qorhp")
 
-[node name="BeehiveArea" type="Area2D" parent="." groups=["beehive_area"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=19840085]
+libraries/ = SubResource("AnimationLibrary_t5lks")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BeehiveArea"]
+[node name="BeehiveArea" type="Area2D" parent="." unique_id=1454526118 groups=["beehive_area"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeehiveArea" unique_id=1038302741]
 position = Vector2(59, 67.5)
 shape = SubResource("RectangleShape2D_8d235")
 

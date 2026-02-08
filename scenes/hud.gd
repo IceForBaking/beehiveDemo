@@ -4,7 +4,9 @@ extends CanvasLayer
 @onready var coins_counter_label: Label = %CoinsCounterLabel
 @onready var bee_counter_label: Label = %BeeCounterLabel
 @onready var beehive_counter_label: Label = %BeehiveCounterLabel
+@onready var camera: Camera2D = %Camera2D
 
+@onready var bee_speed_bar: HScrollBar = %BeeSpeedBar
 @onready var beehive_shop: GridContainer = %BeehiveShop
 
 func _ready() -> void:
@@ -12,7 +14,31 @@ func _ready() -> void:
 	EventBus.coin_changed.connect(coins_update)
 	EventBus.bee_changed.connect(bee_update)
 	EventBus.beehive_changed.connect(beehive_update)
+
+func _input(event: InputEvent) -> void:
 	
+	if event is InputEventMouseButton:
+		print(event.button_index)
+		if event.button_index == 4 and camera.zoom < Vector2(2.0, 2.0):
+			camera.zoom += Vector2(0.1, 0.1)
+		elif event.button_index == 5 and camera.zoom > Vector2(1.0, 1.0):
+			camera.zoom -= Vector2(0.1, 0.1)
+
+## Scroll into beehive container
+	#if event is InputEventMouseMotion and camera.zoom > Vector2(1.2, 1.2):
+		#if event.screen_velocity.x > 0:
+	#if Input.is_action_pressed("ui_right") and camera.zoom > Vector2(1.2, 1.2):
+			#camera.offset.x += 5.0
+			#if camera.offset.x >= 78.0:
+				#camera.offset.x = 78.0
+	#elif Input.is_action_pressed("ui_left") and camera.zoom > Vector2(1.2, 1.2):
+		#if event.velocity.x < 0:
+			#camera.offset.x -= 5.0
+			#if camera.offset.x <= -104.0:
+				#camera.offset.x = -104.0
+	#elif camera.zoom <= Vector2(1.2, 1.2):
+		#camera.offset.x = 0.0
+
 func honey_update(honey_points: int):
 	honey_counter_label.text = str(honey_points)
 	
@@ -24,3 +50,11 @@ func bee_update(bee: int):
 
 func beehive_update(beehive: int):
 	beehive_counter_label.text = str(beehive)
+
+func _on_h_scroll_bar_scrolling() -> void:
+	if bee_speed_bar.value == 100:
+		Globals.bee_speed = 2.0
+	elif bee_speed_bar.value == -100:
+		Globals.bee_speed = 0.0
+	else:
+		Globals.bee_speed = randf_range(1.2, 2.0)

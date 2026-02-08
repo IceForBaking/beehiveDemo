@@ -8,16 +8,21 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Beehive"
 run/main_scene="uid://d1le6jp6gedne"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 
 [autoload]
 
 EventBus="*res://EventBus.gd"
 Globals="*res://globals/Globals.gd"
+MergeManager="*uid://cevfou3i1kbmo"
 
 [display]
 
@@ -27,6 +32,7 @@ window/stretch/aspect="expand"
 [global_group]
 
 beehive=""
+merge=""
 
 [input]
 

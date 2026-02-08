@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://mo4hdvyu6uif"]
+[gd_scene format=3 uid="uid://mo4hdvyu6uif"]
 
 [ext_resource type="Texture2D" uid="uid://1pboqukeka4e" path="res://assets/beekeepin-set-transparent.png" id="1_1q2x0"]
 [ext_resource type="Script" uid="uid://mhjbpircv637" path="res://scenes/bee.gd" id="1_ogg2i"]
@@ -9,29 +9,40 @@ atlas = ExtResource("1_1q2x0")
 region = Rect2(240, 60, 10, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogg2i"]
-size = Vector2(10, 14)
+size = Vector2(10, 16)
 
-[node name="Bee" type="Area2D"]
+[node name="Bee" type="Area2D" unique_id=1427412231 groups=["merge"]]
+z_index = 1
 script = ExtResource("1_ogg2i")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Button" type="Button" parent="." unique_id=336465275]
+offset_left = -7.0
+offset_top = -10.0
+offset_right = 7.0
+offset_bottom = 10.0
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1563679550]
 texture = SubResource("AtlasTexture_vie5o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=896678240]
 shape = SubResource("RectangleShape2D_ogg2i")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1141790354]
 autostart = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1379798945]
 stream = ExtResource("3_ogg2i")
-volume_db = -20.05
+volume_db = -25.0
 pitch_scale = 0.5
 autoplay = true
-max_distance = 150.0
+max_distance = 500.0
 attenuation = 1.8660663
 
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1928624213]
 current = true
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
