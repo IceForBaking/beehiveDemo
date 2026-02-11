@@ -1,10 +1,11 @@
 extends Node
 
-var max_level : int = 2
+var max_level : int = 3
 
 var merge_obg : Array[PackedScene] = [
 	preload("res://scenes/bee.tscn"),
 	preload("res://scenes/bee2.tscn"),
+	preload("res://scenes/bee3.tscn"),
 ]
 
 func spawn_merge_obj(pos : Vector2, current_level : int):

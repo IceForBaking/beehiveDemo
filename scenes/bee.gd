@@ -4,6 +4,7 @@ class_name Bee extends Area2D
 
 @export var update_from_bee := 1
 @export var level : int = 1
+@export var center : Vector2 = Vector2()
 
 var is_dragging = false
 var is_merging = false
@@ -12,10 +13,7 @@ var time := 0.0
 var speed := randf_range(1.2, 2.0)  
 var a_size := randf_range(-200, 200) 
 var b_size := randf_range(-100, 100)  
-
 var offset = Vector2(0,0)
-
-@export var center : Vector2 = Vector2()
 
 func _ready() -> void:
 	audio_stream_player.pitch_scale = randf_range(0.5, 1.2)
@@ -39,7 +37,7 @@ func _process(delta):
 			
 func merg_obj(other_merge_obj):
 	
-	var spawn_pos = global_position
+	var spawn_pos = other_merge_obj.global_position
 	MergeManager.spawn_merge_obj(spawn_pos, level)
 	
 	if level != MergeManager.max_level:
