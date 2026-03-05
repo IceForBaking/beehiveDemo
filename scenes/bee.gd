@@ -19,10 +19,12 @@ func _ready() -> void:
 	audio_stream_player.pitch_scale = randf_range(0.5, 1.2)
 
 func _process(delta):
-	
+	print(is_dragging)
 	if is_dragging:
+		monitoring = true
 		position = get_global_mouse_position() - offset
 	else:
+		monitoring = false
 		randomize()
 		time += delta * Globals.bee_speed
 		var x = a_size * sin(time)
@@ -39,7 +41,7 @@ func merg_obj(other_merge_obj):
 	
 	var spawn_pos = other_merge_obj.global_position
 	MergeManager.spawn_merge_obj(spawn_pos, level)
-	
+		
 	if level != MergeManager.max_level:
 		other_merge_obj.queue_free()
 		queue_free()
@@ -58,6 +60,7 @@ func _on_button_button_up() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("merge"):
+		area.is_dragging = true
 		if area.level == level:
 			if area.get_instance_id() > get_instance_id():
 				return

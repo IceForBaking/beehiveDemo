@@ -9,6 +9,8 @@ size = Vector2(10, 16)
 
 [node name="Bee3" type="Area2D" unique_id=1427412231 groups=["merge"]]
 z_index = 1
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_08vg6")
 update_from_bee = 5
 level = 3

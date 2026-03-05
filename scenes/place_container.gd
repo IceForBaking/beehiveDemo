@@ -25,9 +25,3 @@ func _on_h_scroll_bar_mouse_entered() -> void:
 
 func _on_h_scroll_bar_mouse_exited() -> void:
 	anim(Color.TRANSPARENT, 0)
-
-func _on_check_button_mouse_entered() -> void:
-	anim(Color.ORANGE, 1)
-
-func _on_check_button_mouse_exited() -> void:
-	anim(Color.TRANSPARENT, 0)

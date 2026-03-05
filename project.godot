@@ -42,6 +42,12 @@ click={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="bee_1"
+2d_physics/layer_2="bee_2"
+2d_physics/layer_3="bee_3"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

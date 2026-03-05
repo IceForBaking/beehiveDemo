@@ -6,7 +6,6 @@ extends CanvasLayer
 @onready var beehive_counter_label: Label = %BeehiveCounterLabel
 @onready var camera: Camera2D = %Camera2D
 
-@onready var bee_speed_bar: HScrollBar = %BeeSpeedBar
 @onready var beehive_shop: GridContainer = %BeehiveShop
 
 func _ready() -> void:
@@ -18,11 +17,15 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseButton:
-		print(event.button_index)
 		if event.button_index == 4 and camera.zoom < Vector2(2.0, 2.0):
 			camera.zoom += Vector2(0.1, 0.1)
+			
+			if camera.zoom >= Vector2(1.4, 1.4):
+				Globals.bee_speed  = 0.1
+				
 		elif event.button_index == 5 and camera.zoom > Vector2(1.0, 1.0):
 			camera.zoom -= Vector2(0.1, 0.1)
+			Globals.bee_speed  = randf_range(1.2, 2.0)
 
 ## Scroll into beehive container
 	#if event is InputEventMouseMotion and camera.zoom > Vector2(1.2, 1.2):
@@ -50,11 +53,3 @@ func bee_update(bee: int):
 
 func beehive_update(beehive: int):
 	beehive_counter_label.text = str(beehive)
-
-func _on_h_scroll_bar_scrolling() -> void:
-	if bee_speed_bar.value == 100:
-		Globals.bee_speed = 2.0
-	elif bee_speed_bar.value == -100:
-		Globals.bee_speed = 0.0
-	else:
-		Globals.bee_speed = randf_range(1.2, 2.0)

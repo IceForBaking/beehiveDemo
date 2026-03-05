@@ -16,6 +16,8 @@ var min_bee_speed := 0.0
 var beehive := 1
 var max_beehive := 5
 
+var is_dragging = false
+
 func honey_points_update(amount: int):
 	honey_points += amount
 	EventBus.honey_changed.emit(honey_points)
