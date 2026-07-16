@@ -47,3 +47,9 @@ https://github.com/user-attachments/assets/cc3f6eb9-3802-4e50-b412-151c8c502bf6
 - Каждый улей вмещает до **10 пчёл**.
 - Как только улей заполнен — можно купить следующий.
 - Стоимость нового улья растёт экспоненциально.
+
+
+
+https://github.com/user-attachments/assets/ef96a926-da61-4036-a0b8-5b78bae5829c
+
+
