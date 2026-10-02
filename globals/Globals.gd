@@ -6,7 +6,7 @@ var honey_points := 0
 var for_sell_honey := 10
 
 var coins := 0
-var coins_for_purchase := 100
+var coins_for_purchase := 10
 
 var current_bee := 0
 var max_bee := 10

@@ -2,6 +2,11 @@ extends Node
 
 var max_level : int = 3
 
+var merge_purchase : Dictionary = {
+	"level_2": 40,
+	"level_3": 80
+}
+
 var merge_obg : Array[PackedScene] = [
 	preload("res://scenes/bee.tscn"),
 	preload("res://scenes/bee2.tscn"),

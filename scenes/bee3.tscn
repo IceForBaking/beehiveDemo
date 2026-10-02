@@ -12,7 +12,7 @@ z_index = 1
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_08vg6")
-update_from_bee = 5
+update_from_bee = 12
 level = 3
 
 [node name="Button" type="Button" parent="." unique_id=336465275]

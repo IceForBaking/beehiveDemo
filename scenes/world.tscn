@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c6messjshhgb6" path="res://assets/beeicon3.png" id="10_o8fc1"]
 [ext_resource type="Script" uid="uid://b54m5lxgscwub" path="res://scenes/beehive_shop.gd" id="10_q5onr"]
 [ext_resource type="AudioStream" uid="uid://dhdqevs8jjabn" path="res://sounds/Spring Break.wav" id="14_o8fc1"]
-[ext_resource type="Script" uid="uid://chou68v31ecb7" path="res://scenes/merge_system.gd" id="16_dss4m"]
+[ext_resource type="Script" uid="uid://b7xa0xdyk43f4" path="res://scenes/dev_coins_button.gd" id="15_dss4m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0juu"]
 shader = ExtResource("2_4wyf3")
@@ -38,9 +38,6 @@ shader_parameter/ray2_intensity = 0.346000016435
 shader_parameter/color = Color(0.9999998, 0.6698727, 0.23783875, 0.52156866)
 shader_parameter/hdr = false
 shader_parameter/seed = 8.155
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7141"]
-size = Vector2(801, 200)
 
 [sub_resource type="SphereMesh" id="SphereMesh_w7kh3"]
 
@@ -143,25 +140,21 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="PlaceContainer" type="HBoxContainer" parent="HUD/BeehiveUI" unique_id=1025365860]
+custom_minimum_size = Vector2(800, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("3_71j4m")
 
-[node name="ShopArea" type="Area2D" parent="HUD/BeehiveUI/PlaceContainer" unique_id=176875012]
+[node name="Marker2D" type="Marker2D" parent="HUD/BeehiveUI/PlaceContainer" unique_id=949325767]
+position = Vector2(400.72498, 101.285)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HUD/BeehiveUI/PlaceContainer/ShopArea" unique_id=527294528]
-position = Vector2(400.5, 101)
-shape = SubResource("RectangleShape2D_i7141")
-
-[node name="Marker2D" type="Marker2D" parent="HUD/BeehiveUI/PlaceContainer/ShopArea" unique_id=949325767]
-position = Vector2(400.725, 101.285)
-
-[node name="Camera2D" type="Camera2D" parent="HUD/BeehiveUI/PlaceContainer/ShopArea/Marker2D" unique_id=1102121252]
+[node name="Camera2D" type="Camera2D" parent="HUD/BeehiveUI/PlaceContainer/Marker2D" unique_id=1102121252]
 unique_name_in_owner = true
 limit_bottom = 651
 
 [node name="ColorRect" type="ColorRect" parent="HUD/BeehiveUI/PlaceContainer" unique_id=1863071163]
+visible = false
 custom_minimum_size = Vector2(800, 200)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -181,6 +174,7 @@ layout_mode = 2
 
 [node name="SpawnPoint" type="Marker2D" parent="HUD/BeehiveUI/BeehiveContainer" unique_id=1293196921]
 unique_name_in_owner = true
+visible = false
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="HUD/BeehiveUI/BeehiveContainer/SpawnPoint" unique_id=1882811914]
 modulate = Color(0.803278, 6.32679e-05, 0.156364, 1)
@@ -243,13 +237,23 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_o8fc1")
 expand_mode = 1
-stretch_mode = 1
 
 [node name="BeehiveCounterLabel" type="Label" parent="HUD/BeehiveUI/DataInt/HBoxContainer" unique_id=311506868]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/BeehiveUI/DataInt" unique_id=806817723]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="PanelContainer" parent="HUD/BeehiveUI/DataInt/HBoxContainer2" unique_id=489328468]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
 
 [node name="BeehiveShop" type="GridContainer" parent="HUD/BeehiveUI" unique_id=1158650538]
 unique_name_in_owner = true
@@ -334,24 +338,26 @@ custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Buy New Apiary"
 
-[node name="AutoClickTimer" type="Timer" parent="." unique_id=1389832961]
-autostart = true
+[node name="DevCont" type="HBoxContainer" parent="HUD" unique_id=1579806017]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="HUD/DevCont" unique_id=937640049]
+layout_mode = 2
+text = "Coins
+
+"
+script = ExtResource("15_dss4m")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1412169842]
 stream = ExtResource("14_o8fc1")
 volume_db = -10.0
 autoplay = true
 
-[node name="MergeSystem" type="Node2D" parent="." unique_id=218808392]
-script = ExtResource("16_dss4m")
-
-[connection signal="area_entered" from="HUD/BeehiveUI/PlaceContainer/ShopArea" to="HUD/BeehiveUI/PlaceContainer" method="_on_shop_area_area_entered"]
-[connection signal="area_exited" from="HUD/BeehiveUI/PlaceContainer/ShopArea" to="HUD/BeehiveUI/PlaceContainer" method="_on_shop_area_area_exited"]
-[connection signal="gui_input" from="HUD/BeehiveUI/PlaceContainer/ColorRect" to="HUD/BeehiveUI" method="_on_color_rect_gui_input"]
 [connection signal="mouse_entered" from="HUD/BeehiveUI/PlaceContainer/ColorRect" to="HUD/BeehiveUI/PlaceContainer" method="_on_color_rect_mouse_entered"]
 [connection signal="mouse_exited" from="HUD/BeehiveUI/PlaceContainer/ColorRect" to="HUD/BeehiveUI/PlaceContainer" method="_on_color_rect_mouse_exited"]
 [connection signal="pressed" from="HUD/BeehiveUI/BeehiveShop/BuyBeeButton" to="HUD/BeehiveUI/BeehiveShop" method="_on_buy_bee_button_pressed"]
 [connection signal="beehive_spawn" from="HUD/BeehiveUI/BeehiveShop/BeehiveBuyingButton" to="HUD/BeehiveUI/BeehiveContainer" method="_on_shop_beehive_beehive_spawn"]
 [connection signal="check_max_beehives" from="HUD/BeehiveUI/BeehiveShop/BeehiveBuyingButton" to="HUD/BeehiveUI/BeehiveShop" method="_on_beehive_buying_button_check_max_beehives"]
 [connection signal="pressed" from="HUD/BeehiveUI/BeehiveShop/SellHoneyButton" to="HUD/BeehiveUI/BeehiveShop" method="_on_sell_honey_button_pressed"]
-[connection signal="timeout" from="AutoClickTimer" to="HUD/BeehiveUI/BeehiveContainer/Beehive2" method="_on_auto_click_timer_timeout"]
+[connection signal="pressed" from="HUD/DevCont/Button" to="HUD/DevCont/Button" method="_on_pressed"]

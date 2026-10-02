@@ -4,6 +4,7 @@ class_name Bee extends Area2D
 
 @export var update_from_bee := 1
 @export var level : int = 1
+@export var merge_purchase : int = 1
 @export var center : Vector2 = Vector2()
 
 var is_dragging = false
@@ -39,6 +40,7 @@ func _process(delta):
 			
 func merg_obj(other_merge_obj):
 	
+	#if Globals.coins >= merge_purchase:
 	var spawn_pos = other_merge_obj.global_position
 	MergeManager.spawn_merge_obj(spawn_pos, level)
 		
@@ -59,7 +61,7 @@ func _on_button_button_up() -> void:
 	is_dragging = false
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("merge"):
+	if area.is_in_group("merge") and Globals.coins >= merge_purchase:
 		area.is_dragging = true
 		if area.level == level:
 			if area.get_instance_id() > get_instance_id():

@@ -12,8 +12,9 @@ z_index = 1
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_hpmof")
-update_from_bee = 3
+update_from_bee = 5
 level = 2
+merge_purchase = 80
 
 [node name="Button" type="Button" parent="." unique_id=336465275]
 offset_left = -7.0

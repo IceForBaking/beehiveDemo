@@ -6,8 +6,8 @@ extends GridContainer
 @onready var beehive_buying_button: TextureRect = %BeehiveBuyingButton
 
 var honey_seller := -10
-var coins_update := 1000
-var coins_reset := -100
+var coins_update := 1
+var coins_reset := -10
 var bee_update := 1
 
 func spawn_point_updater():
