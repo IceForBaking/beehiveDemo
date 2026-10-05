@@ -10,6 +10,8 @@ var coins_update := 1
 var coins_reset := -10
 var bee_update := 1
 
+var hold_time := 0
+
 func spawn_point_updater():
 	spawn_point.position = Vector2(randf_range(0, beehive_container.size.x), randf_range(0, beehive_container.size.y))
 	print(spawn_point.position)
@@ -25,8 +27,15 @@ func _on_buy_bee_button_pressed() -> void:
 
 func _on_sell_honey_button_pressed() -> void:
 	if Globals.honey_points >= Globals.for_sell_honey:
+		#Globals.honey_points_update(honey_seller)
+		#Globals.coins_update(coins_update)
+		
+		honey_seller = -Globals.honey_points + Globals.honey_points % 10
+		coins_update = Globals.honey_points / 10
 		Globals.honey_points_update(honey_seller)
 		Globals.coins_update(coins_update)
+
+		
 
 func _on_beehive_buying_button_check_max_beehives() -> void:
 	if Globals.beehive == Globals.max_beehive:

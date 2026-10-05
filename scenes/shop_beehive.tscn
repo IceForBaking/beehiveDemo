@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6meun4u2slnm"]
+[gd_scene format=3 uid="uid://c6meun4u2slnm"]
 
 [ext_resource type="Texture2D" uid="uid://1pboqukeka4e" path="res://assets/beekeepin-set-transparent.png" id="1_pyudj"]
 [ext_resource type="Script" uid="uid://drdutuwcltqk3" path="res://scenes/shop_beehive.gd" id="2_bllfc"]
@@ -59,7 +59,7 @@ _data = {
 &"show": SubResource("Animation_3mvuv")
 }
 
-[node name="ShopBeehive" type="TextureRect"]
+[node name="ShopBeehive" type="TextureRect" unique_id=2047307425]
 custom_minimum_size = Vector2(50, 50)
 offset_right = 50.0
 offset_bottom = 50.0
@@ -68,10 +68,8 @@ texture = SubResource("AtlasTexture_i7141")
 expand_mode = 1
 script = ExtResource("2_bllfc")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_3mvuv")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=617828862]
+libraries/ = SubResource("AnimationLibrary_3mvuv")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

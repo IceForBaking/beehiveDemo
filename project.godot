@@ -20,7 +20,7 @@ config/features=PackedStringArray("4.7", "Mobile")
 
 [autoload]
 
-EventBus="*res://EventBus.gd"
+EventBus="*res://globals/EventBus.gd"
 Globals="*res://globals/Globals.gd"
 MergeManager="*uid://cevfou3i1kbmo"
 
