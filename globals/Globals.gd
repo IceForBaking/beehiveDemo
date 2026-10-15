@@ -13,7 +13,7 @@ var max_bee := 10
 var bee_speed := randf_range(1.2, 2.0)
 var min_bee_speed := 0.0
 
-var beehive := 1
+var beehive := 0
 var max_beehive := 5
 
 var is_dragging = false

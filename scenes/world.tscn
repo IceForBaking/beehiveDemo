@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cgge7st5oil4b" path="res://assets/Free-Summer-Pixel-Art-Backgrounds/PNG/summer 1/Summer1.png" id="1_rwgxs"]
 [ext_resource type="Script" uid="uid://unknmv8y6hr5" path="res://scenes/hud.gd" id="1_w7kh3"]
 [ext_resource type="Shader" uid="uid://nbldgwpxnhy" path="res://shaders/blur.gdshader" id="2_4wyf3"]
-[ext_resource type="PackedScene" uid="uid://by5jamv1ubi0f" path="res://scenes/beehive.tscn" id="3_4wyf3"]
 [ext_resource type="Script" uid="uid://cu4gufuqng1i3" path="res://scenes/place_container.gd" id="3_71j4m"]
 [ext_resource type="Texture2D" uid="uid://cmsrmq5jvh68w" path="res://assets/Honey.png" id="4_k0juu"]
 [ext_resource type="Shader" uid="uid://6swh23rp1jv0" path="res://shaders/light.gdshader" id="4_o8fc1"]
@@ -14,7 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://1pboqukeka4e" path="res://assets/beekeepin-set-transparent.png" id="10_jhx03"]
 [ext_resource type="Texture2D" uid="uid://c6messjshhgb6" path="res://assets/beeicon3.png" id="10_o8fc1"]
 [ext_resource type="Script" uid="uid://b54m5lxgscwub" path="res://scenes/beehive_shop.gd" id="10_q5onr"]
+[ext_resource type="Texture2D" uid="uid://dxwrmm50c1413" path="res://assets/Bee.png" id="14_dss4m"]
 [ext_resource type="AudioStream" uid="uid://dhdqevs8jjabn" path="res://sounds/Spring Break.wav" id="14_o8fc1"]
+[ext_resource type="Texture2D" uid="uid://8e7jj81knjnl" path="res://assets/Bee3.png" id="15_7t5mc"]
 [ext_resource type="Script" uid="uid://b7xa0xdyk43f4" path="res://scenes/dev_coins_button.gd" id="15_dss4m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0juu"]
@@ -95,6 +96,10 @@ corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w7kh3"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo05s"]
+atlas = ExtResource("10_jhx03")
+region = Rect2(180, 105, 10, 15)
+
 [node name="World" type="Node2D" unique_id=1935006409]
 script = ExtResource("1_jhx03")
 
@@ -168,9 +173,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 25
 script = ExtResource("5_4mrxx")
-
-[node name="Beehive2" parent="HUD/BeehiveUI/BeehiveContainer" unique_id=619400302 instance=ExtResource("3_4wyf3")]
-layout_mode = 2
 
 [node name="SpawnPoint" type="Marker2D" parent="HUD/BeehiveUI/BeehiveContainer" unique_id=1293196921]
 unique_name_in_owner = true
@@ -288,7 +290,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_w7kh3")
 text = "Sell Honey"
 
 [node name="HoneyShop" type="HBoxContainer" parent="HUD" unique_id=1887843471]
-visible = false
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -308,6 +309,7 @@ layout_mode = 2
 color = Color(1, 0.6862745, 0.30980393, 0.60784316)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/HoneyShop/ColorRect" unique_id=1241119203]
+custom_minimum_size = Vector2(200, 500)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -323,20 +325,44 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Button" type="Button" parent="HUD/HoneyShop/ColorRect/VBoxContainer" unique_id=361759688]
-custom_minimum_size = Vector2(200, 50)
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/HoneyShop/ColorRect/VBoxContainer" unique_id=1122914342]
+visible = false
 layout_mode = 2
-text = "Buy Honey Extractor"
 
-[node name="Button2" type="Button" parent="HUD/HoneyShop/ColorRect/VBoxContainer" unique_id=1799131785]
-custom_minimum_size = Vector2(200, 50)
+[node name="BeeTexture" type="TextureRect" parent="HUD/HoneyShop/ColorRect/VBoxContainer/HBoxContainer" unique_id=1067600265]
+custom_minimum_size = Vector2(54.3, 20)
 layout_mode = 2
-text = "Buy Next Bee Level"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_xo05s")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Button3" type="Button" parent="HUD/HoneyShop/ColorRect/VBoxContainer" unique_id=1749970179]
-custom_minimum_size = Vector2(200, 50)
+[node name="BeeCounterLabel" type="Label" parent="HUD/HoneyShop/ColorRect/VBoxContainer/HBoxContainer" unique_id=265876122]
+custom_minimum_size = Vector2(54.3, 36.39)
 layout_mode = 2
-text = "Buy New Apiary"
+theme_override_font_sizes/font_size = 20
+text = "0"
+vertical_alignment = 1
+
+[node name="FoldableContainer" type="FoldableContainer" parent="HUD/HoneyShop/ColorRect/VBoxContainer" unique_id=1465049110]
+layout_mode = 2
+folded = true
+title = "Bee's"
+title_alignment = 1
+
+[node name="MenuButton" type="MenuButton" parent="HUD/HoneyShop/ColorRect/VBoxContainer/FoldableContainer" unique_id=406894610]
+visible = false
+layout_mode = 2
+text = "Bee's"
+flat = false
+item_count = 2
+popup/item_0/text = "0"
+popup/item_0/icon = ExtResource("15_7t5mc")
+popup/item_0/id = 1
+popup/item_1/text = "0"
+popup/item_1/icon = ExtResource("14_dss4m")
+popup/item_1/id = 2
 
 [node name="DevCont" type="HBoxContainer" parent="HUD" unique_id=1579806017]
 offset_right = 40.0
